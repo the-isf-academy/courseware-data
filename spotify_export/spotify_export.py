@@ -5,12 +5,16 @@ import pandas as pd
 import time
 import json
 
-SPOTIPY_CLIENT_ID='719286f4971e4d3985933ab31f96e659'
-SPOTIPY_CLIENT_SECRET='6586305e7b304efcbc3556cfbce9b023'
+client_id_file = open("data/client_id.txt","r")
+SPOTIPY_CLIENT_ID = client_id_file.readline().replace("\n","").replace(" ","")
+
+client_secret_file = open("data/client_secret.txt","r")
+SPOTIPY_CLIENT_SECRET=client_secret_file.readline().replace("\n","").replace(" ","")
+
 SPOTIPY_REDIRECT_URI='http://127.0.0.1:9090'
 SCOPE = "user-top-read"
 
-DATA = "data/MyData/StreamingHistory4.json"
+DATA = "data/StreamingHistory0.json"
 
 def streaming_history_to_csv():
     with open(DATA) as json_file:
@@ -32,7 +36,7 @@ def streaming_history_to_csv():
     df = pd.DataFrame(events, columns = ['title','artist', 'album','popularity','explicit','genres', 'danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'release_date','length_of_song','date_streamed', 'time_streamed','length_time_listened'])
     # save to CSV
     timestamp = time.strftime("%d%b_%H%M")
-    df.to_csv('spotify_data_export_{}.csv'.format(timestamp))
+    df.to_csv('export/spotify_data_export_{}.csv'.format(timestamp))
 
 def get_track_info(artist_name,track_name):
     query = "track:{} artist:{}".format(track_name,artist_name)
