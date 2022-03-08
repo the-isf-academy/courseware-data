@@ -1,6 +1,6 @@
-# Youtube Export 
+# YouTube Export 
 
-This script converts the Youtube `watch-history.json` into a csv file. It also uses the [Youtube Data API](https://developers.google.com/youtube/v3) to populate the csv with channel and video specific statistics. 
+This script converts the YouTube `watch-history.json` into a csv file. It also uses the [Youtube Data API](https://developers.google.com/youtube/v3) to populate the csv with channel and video specific statistics. 
 
 ## Installation 
 
@@ -8,9 +8,9 @@ First, install the packages these scripts require:
 
 `pip3 install  -r requirements.txt`
 
-## Add personalized Youtube json to repo
+## Add personalized YouTube json to repo
 
-First, you will need to export your Youtube data using [Google Takeout](https://takeout.google.com/settings/takeout). This may take a couple of hours. 
+First, you will need to export your YouTube data using [Google Takeout](https://takeout.google.com/settings/takeout). This may take a couple of hours. 
 
 Once you receive the email confirming your data is ready to download, download the `.zip` files. Then, upzip the files in your `/downloads` folder. 
 
