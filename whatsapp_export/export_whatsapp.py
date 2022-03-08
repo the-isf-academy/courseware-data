@@ -11,7 +11,7 @@ from simple_term_menu import TerminalMenu
 DATA_DIR = "data"
 EXPORT_DIR = Path("./export")
 OUTFILE = "whatsapp.csv"
-DATETIME_FORMAT = "%m/%d/%y, %X"
+DATETIME_FORMAT = "%m/%d/%Y, %X"
 
 def get_chat_df(zipped_chat):
     with tempfile.TemporaryDirectory() as tmp_chat_dir:
@@ -35,8 +35,12 @@ def export_whatsapp_to_csv():
     chat_dfs.to_csv(EXPORT_DIR / "whatsapp.csv")
 
 if __name__ == '__main__':
-    datetime_dict = {"DD/MM/YYYY": "%d/%m/%y, %X","MM/DD/YYYY": "%m/%d/%y, %X"}
+    datetime_dict = {"DD/MM/YYYY": "%d/%m/%Y, %X","MM/DD/YYYY": "%m/%d/%Y, %X"}
     date_format_menu = TerminalMenu(datetime_dict.keys(), title="Select date format of your chat data:")
     menu_entry_index = date_format_menu.show()
     DATETIME_FORMAT = datetime_dict[list(datetime_dict.keys())[menu_entry_index]]
     export_whatsapp_to_csv()
+
+    print("----- Finished Export -----")
+    print(".csv file can be found in /export")
+    print("-"*30)
