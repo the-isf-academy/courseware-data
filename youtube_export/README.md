@@ -26,10 +26,14 @@ Once you have your api key, paste it into the `data/api_key.txt` file.
 
 ## Running the script
 
-Run this script using the following command:
+Run this script using the following command: **`python3 youtube_export.py`**
 
-`python3 youtube_export.py`
 
-You can find your data in the `exports/` directory.
+You must go through the options in order:
 
-The script provides a few options. If you have not run the script before, select `json to csv`. If you have run it, select either `channel stats` or `video stats`. 
+0. Select `json to csv`.
+1. Select `channel stats`.
+2. Select `video stats`.
+
+You can find your data in the `watch-history-full.csv` file in the `exports/` directory.
+
