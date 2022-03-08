@@ -23,10 +23,10 @@ You can add as many chat files as you want.
 ## Running the script
 Run this script using the following command:
 ```
-python export_whatsapp.py
+python3 export_whatsapp.py
 ```
 
-You can find your data in the `exports/` directory.
+**You can find your data in the `exports/` directory.**
 
 ## Group chats and chat names
 This script records who sent a message and what chat the message was sent to.
