@@ -1,0 +1,6 @@
+.envrc
+__pycache__/
+data/chat.db
+env/
+export/imessage.csv
+export/index.html

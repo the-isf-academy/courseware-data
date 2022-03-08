@@ -1,0 +1,5 @@
+env/*
+*.swp
+*.swo
+turtlegifmaker/export/*
+.DS_Store

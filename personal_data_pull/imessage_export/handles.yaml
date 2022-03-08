@@ -1,0 +1,4 @@
+# The SMS export will likely not have names for all the phone numbers
+# of interest. Use this file to map phone numbers to names. For example: 
+"+12345678910": "Phone Contact Name"
+"email_address@email.com": "Email Contact Name"

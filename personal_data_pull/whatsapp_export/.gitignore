@@ -1,0 +1,6 @@
+.envrc
+__pycache__/
+data/*
+!data/blank.txt
+env/
+export/whatsapp.csv
