@@ -35,7 +35,7 @@ def export_whatsapp_to_csv():
     chat_dfs.to_csv(EXPORT_DIR / "whatsapp.csv")
 
 if __name__ == '__main__':
-    datetime_dict = {"DD/MM/YYYY": "%d/%m/%Y, %X","MM/DD/YYYY": "%m/%d/%Y, %X"}
+    datetime_dict = {"DD/MM/YYYY": "%d/%m/%Y, ","MM/DD/YYYY": "%m/%d/%Y, "}
     date_format_menu = TerminalMenu(datetime_dict.keys(), title="Select date format of your chat data:")
     menu_entry_index = date_format_menu.show()
     DATETIME_FORMAT = datetime_dict[list(datetime_dict.keys())[menu_entry_index]]
