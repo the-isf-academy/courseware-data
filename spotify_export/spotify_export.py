@@ -2,8 +2,10 @@ import requests
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import pandas as pd
-import time
 import json
+from datetime import datetime
+import pytz
+from tqdm import tqdm
 
 client_id_file = open("data/client_id.txt","r")
 SPOTIPY_CLIENT_ID = client_id_file.readline().replace("\n","").replace(" ","")
@@ -20,13 +22,18 @@ def streaming_history_to_csv():
     with open(DATA) as json_file:
         streaming_history = json.load(json_file)
     events = []
-    for event in streaming_history:
+    for event in tqdm(streaming_history):
         artist = event['artistName']
         track = event['trackName']
-        date = event['endTime']
-        day = date.split()[0]
-        time_played = date.split()[1]
+        date_utc = event['endTime']
         duration = event['msPlayed']
+        #convert date from UTC to Hong Kong
+        dt_object = datetime.strptime(date_utc, '%Y-%m-%d %H:%M')
+        dt_object = dt_object.replace(tzinfo=pytz.utc).astimezone(pytz.timezone("Asia/Hong_Kong"))
+        #split datetime into day and time
+        day = dt_object.strftime('%Y-%m-%d')
+        time_played = dt_object.strftime('%H:%M')
+        #call the data pull function
         event_info = get_track_info(artist, track)
         if event_info != None:
             event_info.extend([day,time_played,duration])
@@ -35,7 +42,7 @@ def streaming_history_to_csv():
     # create dataset
     df = pd.DataFrame(events, columns = ['title','artist', 'album','popularity','explicit','genres', 'danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'release_date','length_of_song','date_streamed', 'time_streamed','length_time_listened'])
     # save to CSV
-    timestamp = time.strftime("%d%b_%H%M")
+    timestamp = datetime.now().strftime("%d%b_%H%M")
     df.to_csv('export/spotify_data_export_{}.csv'.format(timestamp))
 
 def get_track_info(artist_name,track_name):
