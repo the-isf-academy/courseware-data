@@ -4,7 +4,7 @@ These scripts transform Whatsapp chat export files into a csv file.
 ## Installation
 First, install the packages these scripts require:
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Add Whatsapp chat file
