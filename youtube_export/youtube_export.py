@@ -179,11 +179,11 @@ if __name__ == '__main__':
         if option == "json to csv":
             json_dict = parse_json('data/watch-history.json')
             json_to_csv_df = pd.DataFrame.from_dict(json_dict)
+            # json_to_csv_df.drop(json_to_csv_df.tail(12000).index,axis=0, inplace=True)
             json_to_csv_df.to_csv(r'export/json-parsed.csv',index=None)
 
         elif option == 'channel stats':
-            original_csv_df = pd.read_csv('export/json-parsed.csv')
-
+            original_csv_df = pd.read_csv('export/json-parsed.csv',lineterminator='\n')
             unique_channels = original_csv_df['channel_id'].nunique()
 
             if unique_channels > 10000:
@@ -215,7 +215,7 @@ if __name__ == '__main__':
             original_csv_df.to_csv(r'export/youtube-dataset-channel.csv',index=None)
 
         elif option == 'video stats':
-            yt_df = pd.read_csv('export/youtube-dataset-channel.csv')
+            yt_df = pd.read_csv('export/youtube-dataset-channel.csv',lineterminator='\n')
 
             unique_videos = yt_df['video_id'].nunique()
 
