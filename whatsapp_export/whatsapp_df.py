@@ -11,9 +11,17 @@ def get_whatsapp_df(chat_file, datetime_format="%m/%d/%Y, %X"):
         lines = f.readlines()
         parsed_lines = []
         for line in lines:
-            parsed_line = parse_line(line, datetime_format)
-            if parsed_line:
-                parsed_lines.append(parsed_line)
+            line = line.strip('\u200e')
+            # print(line)
+            if line[0] != '[':
+                # print(line)
+                same_msg = list(parsed_lines[-1])
+                same_msg[-1] += " " + line
+                # print(same_msg)
+            else:
+                parsed_line = parse_line(line, datetime_format)
+                if parsed_line:
+                    parsed_lines.append(parsed_line)
                 # print(parsed_line[0].split(',')[1])
         df = pd.concat([pd.DataFrame({'date':[date.split(',')[0]],'time':[date.split(',')[1]], 'sender':[sender], 'message':[message]}) for date, sender, message in parsed_lines])
     df = df.sort_values('date')
@@ -21,8 +29,8 @@ def get_whatsapp_df(chat_file, datetime_format="%m/%d/%Y, %X"):
 
 
 def parse_line(line, datetime_format):
-    line = line.strip('\u200e')
     if line.count(":") >= 3:
+        # print(line)
         split_line = line.split(':', 3)
         meta_data =  (':').join(split_line[:3])
         message = split_line[-1].strip().strip('\u200e')
