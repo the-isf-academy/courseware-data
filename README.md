@@ -1,5 +1,7 @@
 # courseware-data
 
+> THIS REPO IS OUTDATED. SEE THE `courseware` repo `/personal_data_pull` directory for updated versions.
+
 This repo contains Python scrips for Spotify, YouTube, Netflix, Whatsapp, and iMessage csv files. 
 
 ## disclaimer
